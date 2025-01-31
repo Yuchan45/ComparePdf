@@ -1,4 +1,6 @@
 import fs from 'fs';
+import path from 'path';
+
 import { PDFDocument } from 'pdf-lib';
 
 /**
@@ -22,16 +24,20 @@ export async function transferPdfData(
   const templatePdf = await PDFDocument.load(templateFileBytes);
 
   const sourcePdfFields = getFormFields(sourceForm);
-  console.log('Fields obtained from source pdf to insert:', sourcePdfFields);
+  // console.log('Fields obtained from source pdf to insert:', sourcePdfFields);
   const { modifiedPdf: prefilledPdfBytes, failedFields } = await insertFields(
     templatePdf,
     sourcePdfFields
   );
 
-  console.log('FailedFields: ', failedFields);
+  const fileErrors = {
+    failedCount: failedFields.length,
+    failedFields,
+  };
+  // console.log('FailedFields: ', fileErrors);
   fs.writeFileSync(destinationPdfPath, prefilledPdfBytes);
-  console.log('PDF guardado exitosamente en:', destinationPdfPath);
-  return sourcePdfFields;
+  console.log('PDF successfully saved in:', destinationPdfPath);
+  return fileErrors;
 }
 
 /**
@@ -162,4 +168,41 @@ async function insertFields(pdfToPrefill, fields) {
     modifiedPdf,
     failedFields,
   };
+}
+
+export function getDirectoryFilePaths(directory) {
+  const filePaths = [];
+
+  // Leer todos los archivos y carpetas en el directorio
+  const files = fs.readdirSync(directory);
+
+  files.forEach((file) => {
+    // Construir la ruta completa del archivo
+    const filePath = path.join(directory, file);
+
+    // Verificar si es un archivo (no un directorio)
+    if (fs.statSync(filePath).isFile()) {
+      filePaths.push(filePath);
+    }
+  });
+
+  return filePaths;
+}
+
+export function logResults(fileName, fileErrors, logsPath) {
+  let content;
+
+  if (fileErrors.failedCount > 0) {
+    content = `File '${fileName}' transferred with some ERRORS!\n${JSON.stringify(
+      fileErrors
+    )}\n`;
+  } else {
+    content = `File '${fileName}' transferred its information without errors!\n`;
+  }
+
+  try {
+    fs.appendFileSync(logsPath, content);
+  } catch (err) {
+    console.error('Error while appending content to log file:', err);
+  }
 }

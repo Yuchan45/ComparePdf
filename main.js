@@ -1,6 +1,11 @@
 import fs from 'fs';
+import path from 'path';
 import { PDFDocument } from 'pdf-lib';
-import { transferPdfData } from './transferPdfData/transferData.js';
+import {
+  transferPdfData,
+  getDirectoryFilePaths,
+  logResults,
+} from './transferPdfData/transferData.js';
 
 async function extractFormFields(pdfPath1, pdfPath2) {
   const pdfDocs = [pdfPath1, pdfPath2].map(async (path) => {
@@ -127,24 +132,42 @@ async function prefillPdf(fieldIdsSourcePath, sourcePdfPath) {
 }
 
 async function main() {
-  // Asegúrate de reemplazar 'path/to/your/first-form.pdf' y 'path/to/your/second-form.pdf' con las rutas correctas a los archivos PDF
-  // extractFormFields(
-  //   './resources/compare/I-765-Asylum/Current_I-765_Asylum.pdf',
-  //   './resources/compare/I-765-Asylum/New_Unlocked_i-765_Asylum.pdf'
-  // );
-  // extractFormFields(
-  //   './resources/compare/i-485-Update/now_stg_I485.pdf',
-  //   './resources/compare/i-485-Update/v5-I-485_2025-01-17.pdf'
-  // );
-  // prefillPdf(
-  //   './resources/prefill/fieldsArrayDoc.txt',
-  //   './resources/prefill/new-I-485-2025_01_03-Base.pdf'
-  // );
-  transferPdfData(
-    './transferPdfData/resources/inputs/tests/prefilled1.pdf',
-    './transferPdfData/resources/inputs/tests/TemplateEmptyTest.pdf',
-    './transferPdfData/resources/outputs/newPdf4.pdf'
-  );
+  try {
+    // Reemplazar 'path/to/your/first-form.pdf' y 'path/to/your/second-form.pdf' con las rutas correctas a los archivos PDF
+    // extractFormFields(
+    //   './resources/compare/I-765-Asylum/Current_I-765_Asylum.pdf',
+    //   './resources/compare/I-765-Asylum/New_Unlocked_i-765_Asylum.pdf'
+    // );
+    // extractFormFields(
+    //   './resources/compare/i-485-Update/now_stg_I485.pdf',
+    //   './resources/compare/i-485-Update/v5-I-485_2025-01-17.pdf'
+    // );
+    // prefillPdf(
+    //   './resources/prefill/fieldsArrayDoc.txt',
+    //   './resources/prefill/new-I-485-2025_01_03-Base.pdf'
+    // );
+    const logsPath =
+      './transferPdfData/resources/outputs/arrayOutputs/logs.txt';
+    const inputFilesDirectory =
+      './transferPdfData/resources/inputs/arrayInputs';
+    const directoryFilePaths = getDirectoryFilePaths(inputFilesDirectory);
+    const templatePath =
+      './transferPdfData/resources/inputs/tests/TemplateEmptyTest.pdf';
+
+    fs.writeFileSync(logsPath, '', { flag: 'w' }); // Restore logs clean
+    directoryFilePaths.forEach((filePath) => {
+      const fileName = path.basename(filePath);
+      const fileErrors = transferPdfData(
+        filePath,
+        templatePath,
+        `./transferPdfData/resources/outputs/arrayOutputs/${fileName}`
+      );
+
+      logResults(fileName, fileErrors, logsPath);
+    });
+  } catch (err) {
+    console.error('Error in main', err);
+  }
 }
 
 main();
