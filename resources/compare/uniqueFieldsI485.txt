@@ -1,8 +1,10 @@
-Campos únicos en stage-I485.pdf:
+Campos únicos en ./resources/compare/i-485-Update/now_stg_I485.pdf:
+form1[0].#subform[9].Pt5Line8_DateofBirth[0] (PDFTextField)
+form1[0].#subform[10].Pt6Line14_Country[0] (PDFTextField)
 
-
-Campos únicos en stage-I485.pdf:
-
+Campos únicos en ./resources/compare/i-485-Update/v5-I-485_2025-01-17.pdf:
+form1[0].#subform[1].Pt1Line22_VisaNum[0] (PDFTextField)
+form1[0].#subform[6].Pt4Line10c_MiddleName[0] (PDFTextField)
 
 Campos compartidos en ambos pdfs:
 form1[0].#pageSet[0].Page1[3].PDF417BarCode2[0] (PDFTextField)
@@ -398,7 +400,6 @@ form1[0].#subform[8].Pt8Line7b_State[0] (PDFTextField)
 form1[0].#subform[8].Pt8Line7c_Country[0] (PDFTextField)
 form1[0].#subform[8].Pt8Line8_Group[0] (PDFTextField)
 form1[0].#subform[8].Pt1Line10_AlienNumber[9] (PDFTextField)
-form1[0].#subform[9].Pt5Line8_DateofBirth[0] (PDFTextField)
 form1[0].#subform[9].P6Line8_Country[0] (PDFTextField)
 form1[0].#subform[9].Part6Line8_StreetName[0] (PDFTextField)
 form1[0].#subform[9].P6Line8_City[0] (PDFTextField)
@@ -442,7 +443,6 @@ form1[0].#subform[9].Pt8Line26_YesNo[1] (PDFCheckBox)
 form1[0].#subform[9].Pt8Line26_YesNo[0] (PDFCheckBox)
 form1[0].#subform[9].Pt1Line10_AlienNumber[10] (PDFTextField)
 form1[0].#subform[10].Pt6Line15_Country[0] (PDFTextField)
-form1[0].#subform[10].Pt6Line14_Country[0] (PDFTextField)
 form1[0].#subform[10].Pt6Line19_MaritalStatus[0] (PDFCheckBox)
 form1[0].#subform[10].Pt6Line19_MaritalStatus[1] (PDFCheckBox)
 form1[0].#subform[10].Pt6Line19_MaritalStatus[2] (PDFCheckBox)

@@ -1,10 +1,11 @@
-const fs = require('fs');
-const { PDFDocument } = require('pdf-lib');
+import fs from 'fs';
+import { PDFDocument } from 'pdf-lib';
+import { transferPdfData } from './transferPdfData/transferData.js';
 
 async function extractFormFields(pdfPath1, pdfPath2) {
   const pdfDocs = [pdfPath1, pdfPath2].map(async (path) => {
     const fileBytes = fs.readFileSync(path);
-    return await PDFDocument.load(fileBytes);
+    return await PDFDocument.load(fileBytes, { ignoreEncryption: true });
   });
   const [pdfDoc1, pdfDoc2] = await Promise.all(pdfDocs);
   const form1 = pdfDoc1.getForm();
@@ -125,136 +126,24 @@ async function prefillPdf(fieldIdsSourcePath, sourcePdfPath) {
   return failedFields;
 }
 
-/**
- * Dado un pdf de origen y un pdf de destino
- * Se obtienen todos los campos del pdf origen (fieldId: value) y se prefillean en el pdf destino
- * en aquellos campos, cuyo fieldId coincide, con el valor correspondiente.
- * Devuelve un pdf "outputPdf".
- */
-async function transferPdfData(
-  sourcePdfPath,
-  templatePdfPath,
-  destinationPdfPath
-) {
-  // Read and load the (source) pdf
-  const sourceFileBytes = fs.readFileSync(sourcePdfPath);
-  const sourcePdfDoc = await PDFDocument.load(sourceFileBytes);
-  const sourceForm = sourcePdfDoc.getForm();
-
-  // Read and load the pdf to prefill (template)
-  const targetFileBytes = fs.readFileSync(templatePdfPath);
-  const targetPdfDoc = await PDFDocument.load(targetFileBytes);
-
-  const sourcePdfFields = getFormFields(sourceForm);
-  const modifiedTargetPdfBytes = await insertFields(
-    targetPdfDoc,
-    sourcePdfFields
-  );
-
-  fs.writeFileSync(destinationPdfPath, modifiedTargetPdfBytes);
-  console.log('Fields in source .pdf file:\n', sourcePdfFields);
-  console.log('PDF guardado exitosamente en:', destinationPdfPath);
-  return sourcePdfFields;
-}
-
-/**
- * Given a pdf-lib form,
- * It returns an array with { fieldId, fieldType, value }
- */
-function getFormFields(form) {
-  const fields = form.getFields();
-
-  let resultFields = [];
-  fields.forEach((field) => {
-    const fieldType = field.constructor.name;
-    const fieldId = field.getName();
-
-    let value;
-    if (fieldType === 'PDFCheckBox') {
-      value = form.getCheckBox(fieldId).isChecked() ? 'Checked' : 'Unchecked';
-    } else if (fieldType === 'PDFDropdown') {
-      value = form.getDropdown(fieldId).getSelected();
-    } else if (fieldType === 'PDFTextField') {
-      value = form.getTextField(fieldId).getText();
-    } else {
-      logger.error(
-        `Error while prefilling! Unknown fieldType: ${fieldType}, name: ${fieldId}`
-      );
-    }
-
-    resultFields.push({ fieldId, fieldType, value });
-  });
-
-  return resultFields;
-}
-
-/**
- * Given a pdf-lib form-bytes and an array of fields [{fieldId, fieldType, value}, ...]
- * It prefills, saves and return the modified bytes in order to write and save in a document.
- */
-async function insertFields(targetPdfDoc, fields) {
-  const form = targetPdfDoc.getForm();
-  let failedFields = [];
-
-  fields.forEach((field) => {
-    const { fieldId, fieldType, value } = field;
-
-    if (!fieldId || fieldId === 'none') return;
-
-    try {
-      if (fieldType === 'PDFCheckBox') {
-        if (value === 'Checked') {
-          form.getCheckBox(fieldId).check();
-        }
-      } else if (fieldType === 'PDFDropdown') {
-        form.getDropdown(fieldId).select(value);
-      } else if (fieldType === 'PDFTextField') {
-        try {
-          let textField = form.getTextField(fieldId);
-          textField.setText(value); // E de equal, field is in both old and new version
-        } catch (err) {
-          logger.error(
-            `Error while prefilling ${fieldType}, fieldId: ${fieldId}, value: ${value}`
-          );
-        }
-      } else {
-        logger.error(
-          `Error while prefilling! Unknown fieldType: ${fieldType}, fieldId: ${fieldId}, value: ${value}`
-        );
-      }
-    } catch (err) {
-      console.error(
-        `Error while prefilling the field: ${fieldId}, fieldType: ${fieldType}, value: ${value}`
-      );
-      const failedField = {
-        fieldId,
-        fieldType,
-        value,
-        error: err,
-      };
-      failedFields.push(failedField);
-    }
-  });
-
-  // Save the modified PDF
-  return await targetPdfDoc.save();
-}
-
 async function main() {
   // Asegúrate de reemplazar 'path/to/your/first-form.pdf' y 'path/to/your/second-form.pdf' con las rutas correctas a los archivos PDF
   // extractFormFields(
-  //   './resources/compare/old-vawa-i485.pdf',
-  //   './resources/compare/stage-I485.pdf'
+  //   './resources/compare/I-765-Asylum/Current_I-765_Asylum.pdf',
+  //   './resources/compare/I-765-Asylum/New_Unlocked_i-765_Asylum.pdf'
+  // );
+  // extractFormFields(
+  //   './resources/compare/i-485-Update/now_stg_I485.pdf',
+  //   './resources/compare/i-485-Update/v5-I-485_2025-01-17.pdf'
   // );
   // prefillPdf(
   //   './resources/prefill/fieldsArrayDoc.txt',
   //   './resources/prefill/new-I-485-2025_01_03-Base.pdf'
   // );
-
   transferPdfData(
-    './resources/transferPdfData/test-source-filled-just-some-checkbox-i485.pdf',
-    './resources/transferPdfData/test-target-i485.pdf',
-    './resources/transferPdfData/results/newPdf2.pdf'
+    './transferPdfData/resources/inputs/tests/prefilled1.pdf',
+    './transferPdfData/resources/inputs/tests/TemplateEmptyTest.pdf',
+    './transferPdfData/resources/outputs/newPdf4.pdf'
   );
 }
 
