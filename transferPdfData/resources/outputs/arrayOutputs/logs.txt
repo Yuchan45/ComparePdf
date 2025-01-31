@@ -1,3 +1,14 @@
-File 'prefilled1.pdf' transferred its information without errors!
-File 'prefilled2.pdf' transferred its information without errors!
-File 'prefilled3.pdf' transferred its information without errors!
+
+File 'prefilled1.pdf' transferred its information successfully!
+
+File 'prefilled2.pdf' transferred its information successfully!
+
+File 'prefilled3.pdf' transferred its information successfully!
+
+File 'shouldFailDropdown.pdf' transferred its information successfully!
+
+File 'shouldFailDropdownAndMax.pdf' transferred with some ERRORS!
+{"failedFieldsCount":1,"failedFields":[{"fieldId":"TextMaxLenght2","fieldType":"PDFTextField","value":"123456789","error":"Attempted to set text with length=9 for TextField with maxLength=2 and name=TextMaxLenght2"}]}
+
+File 'shouldFailMaxLength.pdf' transferred with some ERRORS!
+{"failedFieldsCount":1,"failedFields":[{"fieldId":"TextMaxLenght2","fieldType":"PDFTextField","value":"123456789","error":"Attempted to set text with length=9 for TextField with maxLength=2 and name=TextMaxLenght2"}]}

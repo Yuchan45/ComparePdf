@@ -31,12 +31,12 @@ export async function transferPdfData(
   );
 
   const fileErrors = {
-    failedCount: failedFields.length,
+    failedFieldsCount: failedFields.length,
     failedFields,
   };
   // console.log('FailedFields: ', fileErrors);
   fs.writeFileSync(destinationPdfPath, prefilledPdfBytes);
-  console.log('PDF successfully saved in:', destinationPdfPath);
+  // console.log('PDF successfully saved in:', destinationPdfPath);
   return fileErrors;
 }
 
@@ -107,37 +107,85 @@ async function insertFields(pdfToPrefill, fields) {
     try {
       switch (fieldType) {
         case 'PDFCheckBox': {
-          if (value === 'Checked') {
-            form.getCheckBox(fieldId).check();
-          } else {
-            form.getCheckBox(fieldId).uncheck(); // O manejar si se desmarca
+          try {
+            if (value === 'Checked') {
+              form.getCheckBox(fieldId).check();
+            } else {
+              form.getCheckBox(fieldId).uncheck(); // O manejar si se desmarca
+            }
+          } catch (err) {
+            console.error(
+              `Error processing checkbox ${fieldId}: ${err.message}`
+            );
+            failedFields.push({
+              fieldId,
+              fieldType,
+              value,
+              error: err.message,
+            });
           }
           break;
         }
 
         case 'PDFDropdown': {
-          form.getDropdown(fieldId).select(value);
+          try {
+            form.getDropdown(fieldId).select(value);
+          } catch (err) {
+            console.error(
+              `Error processing dropdown ${fieldId}: ${err.message}`
+            );
+            failedFields.push({
+              fieldId,
+              fieldType,
+              value,
+              error: err.message,
+            });
+          }
           break;
         }
 
         case 'PDFTextField': {
           try {
             let textField = form.getTextField(fieldId);
-            textField.setText(value); // Asegúrate de que este método es el correcto
+            textField.setText(value);
           } catch (err) {
             console.error(
               `Error while prefilling ${fieldType}, fieldId: ${fieldId}, value: ${value}: ${err.message}`
             );
+            failedFields.push({
+              fieldId,
+              fieldType,
+              value,
+              error: err.message,
+            });
           }
           break;
         }
 
         case 'PDFRadioGroup': {
-          const radioGroup = form.getRadioGroup(fieldId);
-          if (value) {
-            radioGroup.select(value); // Asegúrate de que este método existe y preselecciona el valor
-          } else {
-            console.error(`Value is not provided for radio group ${fieldId}`);
+          try {
+            const radioGroup = form.getRadioGroup(fieldId);
+            if (value) {
+              radioGroup.select(value);
+            } else {
+              console.error(`Value is not provided for radio group ${fieldId}`);
+              failedFields.push({
+                fieldId,
+                fieldType,
+                value,
+                error: err.message,
+              });
+            }
+          } catch (err) {
+            console.error(
+              `Error processing radio group ${fieldId}: ${err.message}`
+            );
+            failedFields.push({
+              fieldId,
+              fieldType,
+              value,
+              error: err.message,
+            });
           }
           break;
         }
@@ -146,19 +194,19 @@ async function insertFields(pdfToPrefill, fields) {
           console.error(
             `Error while prefilling! Unknown fieldType: ${fieldType}, fieldId: ${fieldId}, value: ${value}`
           );
+          failedFields.push({
+            fieldId,
+            fieldType,
+            value,
+            error: 'Unknown field type',
+          });
         }
       }
     } catch (err) {
       console.error(
-        `Error while prefilling the field: ${fieldId}, fieldType: ${fieldType}, value: ${value}`
+        `Error while processing field: ${fieldId}, fieldType: ${fieldType}, value: ${value}`
       );
-      const failedField = {
-        fieldId,
-        fieldType,
-        value,
-        error: err,
-      };
-      failedFields.push(failedField);
+      failedFields.push({ fieldId, fieldType, value, error: err.message });
     }
   });
 
@@ -192,16 +240,17 @@ export function getDirectoryFilePaths(directory) {
 export function logResults(fileName, fileErrors, logsPath) {
   let content;
 
-  if (fileErrors.failedCount > 0) {
+  if (fileErrors.failedFieldsCount > 0) {
     content = `File '${fileName}' transferred with some ERRORS!\n${JSON.stringify(
       fileErrors
-    )}\n`;
+    )}`;
   } else {
-    content = `File '${fileName}' transferred its information without errors!\n`;
+    content = `File '${fileName}' transferred its information successfully!`;
   }
 
   try {
-    fs.appendFileSync(logsPath, content);
+    fs.appendFileSync(logsPath, '\n' + content + '\n');
+    console.log(content);
   } catch (err) {
     console.error('Error while appending content to log file:', err);
   }

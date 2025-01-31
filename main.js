@@ -152,19 +152,30 @@ async function main() {
       './transferPdfData/resources/inputs/arrayInputs';
     const directoryFilePaths = getDirectoryFilePaths(inputFilesDirectory);
     const templatePath =
-      './transferPdfData/resources/inputs/tests/TemplateEmptyTest.pdf';
+      './transferPdfData/resources/templates/TemplateEmptyTest.pdf';
 
     fs.writeFileSync(logsPath, '', { flag: 'w' }); // Restore logs clean
-    directoryFilePaths.forEach((filePath) => {
+
+    let successFilesCount = 0;
+    let filesWithErrors = 0;
+    for (const filePath of directoryFilePaths) {
       const fileName = path.basename(filePath);
-      const fileErrors = transferPdfData(
+      const fileErrors = await transferPdfData(
         filePath,
         templatePath,
         `./transferPdfData/resources/outputs/arrayOutputs/${fileName}`
       );
-
       logResults(fileName, fileErrors, logsPath);
-    });
+
+      fileErrors.failedFieldsCount > 0
+        ? filesWithErrors++
+        : successFilesCount++;
+    }
+
+    console.log('\n\nProcess Finished!\n');
+    console.log('Successful Files count:', successFilesCount);
+    console.log('Files with some errors:', filesWithErrors);
+    console.log('For more information please check logs in:', logsPath, '\n');
   } catch (err) {
     console.error('Error in main', err);
   }
