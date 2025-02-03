@@ -244,18 +244,39 @@ export function getDirectoryFilePaths(directory) {
 export function logResults(fileName, fileErrors, logsPath) {
   let content;
 
+  // Creación del contenido basado en los errores
   if (fileErrors.failedFieldsCount > 0) {
-    content = `File '${fileName}' transferred with some ERRORS!\n${JSON.stringify(
-      fileErrors
-    )}`;
+    content = {
+      fileName: fileName,
+      message: 'File transferred with some ERRORS!',
+      failedFields: fileErrors,
+    };
   } else {
-    content = `File '${fileName}' transferred its information successfully!`;
+    content = {
+      fileName: fileName,
+      message: 'File transferred its information successfully',
+      failedFields: fileErrors,
+    };
   }
 
   try {
-    fs.appendFileSync(logsPath, '\n' + content + '\n');
+    // Verificar si el archivo ya existe y leer su contenido
+    let existingLogs = [];
+    if (
+      fs.existsSync(logsPath) &&
+      fs.readFileSync(logsPath, 'utf8').trim() !== ''
+    ) {
+      const data = fs.readFileSync(logsPath, 'utf8');
+      existingLogs = JSON.parse(data); // Parsear JSON existente
+    }
+
+    // Agregar el nuevo contenido al array existente
+    existingLogs.push(content);
+
+    // Escribir el array completo de nuevo en el archivo en formato JSON
+    fs.writeFileSync(logsPath, JSON.stringify(existingLogs, null, 2));
     console.log(content);
   } catch (err) {
-    console.error('Error while appending content to log file:', err);
+    console.error('Error while processing the log file:', err);
   }
 }
