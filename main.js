@@ -59,7 +59,7 @@ async function mainCategorizePdfs() {
 async function mainPrefillPdf() {
   // Prefill Pdf
   const prefilledFilePath = './prefillPdf/resources/prefilled.pdf';
-  prefillPdf(
+  await prefillPdf(
     './prefillPdf/resources/fieldsArrayDoc.txt',
     './prefillPdf/resources/new-I-485-2025_01_03-Base.pdf',
     prefilledFilePath
@@ -80,9 +80,9 @@ async function mainComparePdf() {
 async function main() {
   try {
     // mainComparePdf();
-    // mainPrefillPdf();
+    mainPrefillPdf();
     // mainTransferPdfData();
-    mainCategorizePdfs();
+    // mainCategorizePdfs();
   } catch (err) {
     console.error('Error in main', err);
   }
