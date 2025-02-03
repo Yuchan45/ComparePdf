@@ -1,0 +1,193 @@
+[
+  {
+    "fileName": "File1",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": "Yu"
+      }
+    ]
+  },
+  {
+    "fileName": "File2",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": ""
+      },
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "fileName": "File3",
+    "fields": [
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": ""
+      },
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      }
+    ]
+  },
+  {
+    "fileName": "File4",
+    "fields": [
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": ""
+      },
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "LastName",
+        "fieldType": "PDFText",
+        "value": null
+      }
+    ]
+  },
+  {
+    "fileName": "File5",
+    "fields": [
+      {
+        "fieldId": "LastName",
+        "fieldType": "PDFText",
+        "value": "Doe"
+      },
+      {
+        "fieldId": "FirstName",
+        "fieldType": "PDFText",
+        "value": "John"
+      }
+    ]
+  },
+  {
+    "fileName": "File6",
+    "fields": [
+      {
+        "fieldId": "FirstName",
+        "fieldType": "PDFText",
+        "value": "Test"
+      },
+      {
+        "fieldId": "LastName",
+        "fieldType": "PDFText",
+        "value": "asd"
+      }
+    ]
+  },
+  {
+    // Caso de prueba: Sin fields
+    "fileName": "File7",
+    "fields": []
+  },
+  {
+    // Caso de prueba: Un solo field, coincidente
+    "fileName": "File8",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      }
+    ]
+  },
+  {
+    // Caso de prueba: Un solo field diferente
+    "fileName": "File9",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Smith"
+      }
+    ]
+  },
+  {
+    // Caso de prueba: Similar pero con un field menos
+    "fileName": "File10",
+    "fields": [
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": "Yu"
+      },
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "ExtraField",
+        "fieldType": "PDFText",
+        "value": "ExtraValue"
+      }
+    ]
+  },
+  {
+    // Campos de diferentes tipos
+    "fileName": "File11",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "Image",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "MiddleName",
+        "fieldType": "PDFText",
+        "value": "Yu"
+      }
+    ]
+  },
+  {
+    // Campos con valores nulos
+    "fileName": "File12",
+    "fields": [
+      {
+        "fieldId": null,
+        "fieldType": "PDFText",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "MiddleName",
+        "fieldType": null,
+        "value": "Yu"
+      }
+    ]
+  },
+  {
+    // Mismo IDs, diferentes tipos
+    "fileName": "File13",
+    "fields": [
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "PDFText",
+        "value": "Naka"
+      },
+      {
+        "fieldId": "FamilyName",
+        "fieldType": "Image",
+        "value": "Naka"
+      }
+    ]
+  }
+]

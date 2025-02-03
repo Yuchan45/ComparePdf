@@ -6,7 +6,10 @@ import {
   getDirectoryFilePaths,
   logResults,
 } from './transferPdfData/transferData.js';
-import { categorizePdfs } from './categorizePdfs/categorizePdfs.js';
+import {
+  categorizePdfs,
+  organizeFilesByGroups,
+} from './categorizePdfs/categorizePdfs.js';
 import { extractFormFields } from './comparePdfs/comparePdfs.js';
 import { prefillPdf } from './prefillPdf/prefillPdf.js';
 
@@ -64,7 +67,15 @@ async function main() {
     console.log('Files with some errors:', filesWithErrors);
     console.log('For more information please check logs in:', logsPath, '\n');
     */
-    const result = categorizePdfs();
+    // Categorize pdfs
+    const logsPath = './categorizePdfs/resources/logs.txt';
+    const directoryFilePaths = getDirectoryFilePaths(
+      './categorizePdfs/resources/inputs'
+    );
+    const fileGroups = await categorizePdfs(directoryFilePaths, logsPath);
+    console.log('Files that have the same structure:\n', fileGroups);
+
+    organizeFilesByGroups(fileGroups);
   } catch (err) {
     console.error('Error in main', err);
   }

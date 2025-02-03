@@ -48,7 +48,7 @@ export async function transferPdfData(
  * Given a pdf-lib form,
  * It returns an array with { fieldId, fieldType, value }
  */
-function getFormFields(form) {
+export function getFormFields(form) {
   try {
     const fields = form.getFields();
     let resultFields = [];
@@ -99,7 +99,7 @@ function getFormFields(form) {
  * Given a pdf-lib form-bytes and an array of fields [{fieldId, fieldType, value}, ...]
  * It prefills, saves and return the modified bytes in order to write and save in a document.
  */
-async function insertFields(pdfToPrefill, fields) {
+export async function insertFields(pdfToPrefill, fields) {
   const form = pdfToPrefill.getForm();
   let failedFields = [];
 
