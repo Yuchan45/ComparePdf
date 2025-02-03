@@ -66,7 +66,7 @@ async function main() {
     console.log('Files with some errors:', filesWithErrors);
     console.log('For more information please check logs in:', logsPath, '\n');
     */
-    /*
+
     // Categorize pdfs
     const logsPath = './categorizePdfs/resources/logs.txt';
     const directoryFilePaths = getDirectoryFilePaths(
@@ -76,7 +76,6 @@ async function main() {
     console.log('Files that have the same structure:\n', fileGroups);
 
     organizeFilesByGroups(fileGroups);
-    */
   } catch (err) {
     console.error('Error in main', err);
   }
