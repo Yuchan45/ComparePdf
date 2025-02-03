@@ -16,12 +16,16 @@ export async function transferPdfData(
 ) {
   // Read and load the (source) pdf
   const sourceFileBytes = fs.readFileSync(sourcePdfPath);
-  const sourcePdfDoc = await PDFDocument.load(sourceFileBytes);
+  const sourcePdfDoc = await PDFDocument.load(sourceFileBytes, {
+    ignoreEncryption: true,
+  });
   const sourceForm = sourcePdfDoc.getForm();
 
   // Read and load the pdf to prefill (template)
   const templateFileBytes = fs.readFileSync(templatePdfPath);
-  const templatePdf = await PDFDocument.load(templateFileBytes);
+  const templatePdf = await PDFDocument.load(templateFileBytes, {
+    ignoreEncryption: true,
+  });
 
   const sourcePdfFields = getFormFields(sourceForm);
   // console.log('Fields obtained from source pdf to insert:', sourcePdfFields);
