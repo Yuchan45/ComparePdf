@@ -80,9 +80,9 @@ async function mainComparePdf() {
 async function main() {
   try {
     // mainComparePdf();
-    mainPrefillPdf();
+    // mainPrefillPdf();
     // mainTransferPdfData();
-    // mainCategorizePdfs();
+    mainCategorizePdfs();
   } catch (err) {
     console.error('Error in main', err);
   }
