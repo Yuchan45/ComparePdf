@@ -1,0 +1,55 @@
+Cantidad de fields: 53
+
+FirstName (PDFTextField) — Allow Rich Text: NO
+MiddleName (PDFTextField) — Allow Rich Text: NO
+LastName (PDFTextField) — Allow Rich Text: NO
+Address1 (PDFTextField) — Allow Rich Text: NO
+Address2 (PDFTextField) — Allow Rich Text: NO
+City (PDFTextField) — Allow Rich Text: NO
+State (PDFTextField) — Allow Rich Text: NO
+Zip (PDFTextField) — Allow Rich Text: NO
+AlienNumber (PDFTextField) — Allow Rich Text: NO
+CourtName1 (PDFTextField) — Allow Rich Text: NO
+BarNumber1 (PDFTextField) — Allow Rich Text: NO
+Organization (PDFTextField) — Allow Rich Text: NO
+Country (PDFTextField) — Allow Rich Text: NO
+EOIRID (PDFTextField) — Allow Rich Text: NO
+Date (PDFTextField) — Allow Rich Text: NO
+RepInfoFirstName (PDFTextField) — Allow Rich Text: NO
+RepInfoMiddleName (PDFTextField) — Allow Rich Text: NO
+RepInfoLastName (PDFTextField) — Allow Rich Text: NO
+RepInfoAddress1 (PDFTextField) — Allow Rich Text: NO
+RepInfoAddress2 (PDFTextField) — Allow Rich Text: NO
+RepInfoCity (PDFTextField) — Allow Rich Text: NO
+RepInfoState (PDFTextField) — Allow Rich Text: NO
+RepInfoZip (PDFTextField) — Allow Rich Text: NO
+RepInfoPhone (PDFTextField) — Allow Rich Text: NO
+RepInfoFax (PDFTextField) — Allow Rich Text: NO
+RepInfoEmail (PDFTextField) — Allow Rich Text: NO
+NewAddressCB (PDFCheckBox) — Allow Rich Text: NO
+IsOnBehalfOfCB (PDFCheckBox) — Allow Rich Text: NO
+IsOnBehalfOfName (PDFTextField) — Allow Rich Text: NO
+IsOnBehalfDate (PDFTextField) — Allow Rich Text: NO
+AttorneyName (PDFTextField) — Allow Rich Text: NO
+DeliveryDate (PDFTextField) — Allow Rich Text: NO
+DHSAddress (PDFTextField) — Allow Rich Text: NO
+AdditionalInformation (PDFTextField) — Allow Rich Text: NO
+AppearanceType_CB (PDFCheckBox) — Allow Rich Text: NO
+Electronic Service (PDFCheckBox) — Allow Rich Text: NO
+Law Firm (PDFTextField) — Allow Rich Text: NO
+SignatureAttorRepre (PDFTextField) — Allow Rich Text: NO
+SignaturePersonServing (PDFTextField) — Allow Rich Text: NO
+All (PDFCheckBox) — Allow Rich Text: NO
+Custody/Bond (PDFCheckBox) — Allow Rich Text: NO
+Non-Custody/Bond (PDFCheckBox) — Allow Rich Text: NO
+Attorney (PDFCheckBox) — Allow Rich Text: NO
+Representative (PDFCheckBox) — Allow Rich Text: NO
+Law Student/Graduate (PDFCheckBox) — Allow Rich Text: NO
+Reputable Individual (PDFCheckBox) — Allow Rich Text: NO
+Accredited Foreign Government Official (PDFCheckBox) — Allow Rich Text: NO
+Authorized to Practice Dec 23 1952 (PDFCheckBox) — Allow Rich Text: NO
+Yes_1 (PDFCheckBox) — Allow Rich Text: NO
+Yes (PDFCheckBox) — Allow Rich Text: NO
+No (PDFCheckBox) — Allow Rich Text: NO
+Yes_2 (PDFCheckBox) — Allow Rich Text: NO
+AppearanceType_CB_2 (PDFCheckBox) — Allow Rich Text: NO

@@ -12,6 +12,7 @@ import {
 } from './categorizePdfs/categorizePdfs.js';
 import { extractFormFields } from './comparePdfs/comparePdfs.js';
 import { prefillPdf } from './prefillPdf/prefillPdf.js';
+import { generateReport } from './pdfAnalysis/pdfAnalysis.js';
 
 async function mainTransferPdfData() {
   // Transfer Pdf Data
@@ -71,10 +72,19 @@ async function mainComparePdf() {
   // Reemplazar el 1er y 2do arg por los pdf a comparar
   const logPath = './comparePdfs';
   const result = await extractFormFields(
-    './comparePdfs/resources/I-765-Asylum/Current_I-765_Asylum.pdf',
-    './comparePdfs/resources/I-765-Asylum/New_Unlocked_i-765_Asylum.pdf',
+    './comparePdfs/resources/2025_03_20/child-pro-old.pdf',
+    './comparePdfs/resources/2025_03_20/q-child.pdf',
     logPath
   );
+}
+
+async function mainPdfAnalysis() {
+  // Pdf Analysis
+  const logPath = './pdfAnalysis';
+  const filePath = './pdfAnalysis/resources/I-918A.pdf';
+  const fileName = 'I-918A';
+
+  await generateReport(filePath, logPath, fileName);
 }
 
 async function main() {
@@ -82,7 +92,8 @@ async function main() {
     // mainComparePdf();
     // mainPrefillPdf();
     // mainTransferPdfData();
-    mainCategorizePdfs();
+    // mainCategorizePdfs();
+    mainPdfAnalysis();
   } catch (err) {
     console.error('Error in main', err);
   }

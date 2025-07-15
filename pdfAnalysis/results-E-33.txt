@@ -1,0 +1,30 @@
+Cantidad de fields: 25
+
+PUT YOUR ADDRESS HERE 1 (PDFTextField) — Allow Rich Text: NO
+PUT YOUR ADDRESS HERE 2 (PDFTextField) — Allow Rich Text: NO
+PUT YOUR ADDRESS HERE 3 (PDFTextField) — Allow Rich Text: NO
+PUT YOUR ADDRESS HERE 4 (PDFTextField) — Allow Rich Text: NO
+Name (PDFTextField) — Allow Rich Text: NO
+A-Number (PDFTextField) — Allow Rich Text: NO
+In care of - former (PDFTextField) — Allow Rich Text: NO
+in care of - current (PDFTextField) — Allow Rich Text: NO
+number street apartment - former (PDFTextField) — Allow Rich Text: NO
+number street address - current (PDFTextField) — Allow Rich Text: NO
+city state zip country - former (PDFTextField) — Allow Rich Text: NO
+city state zip country - current (PDFTextField) — Allow Rich Text: NO
+phone number - former (PDFTextField) — Allow Rich Text: NO
+phone number - current (PDFTextField) — Allow Rich Text: NO
+email address - former (PDFTextField) — Allow Rich Text: NO
+email address - current (PDFTextField) — Allow Rich Text: NO
+date (PDFTextField) — Allow Rich Text: NO
+name - proof of service (PDFTextField) — Allow Rich Text: NO
+date - proof of service (PDFTextField) — Allow Rich Text: NO
+office of principal legal advisor 1 (PDFTextField) — Allow Rich Text: NO
+office of principal legal advisor 2 (PDFTextField) — Allow Rich Text: NO
+No Service Needed (PDFCheckBox) — Allow Rich Text: NO
+CourtAddress (PDFTextField) — Allow Rich Text: NO
+Signature1 (PDFTextField) — Allow Rich Text: NO
+Signature2 (PDFTextField) — Allow Rich Text: NO
+
+Campos duplicados encontrados: 
+

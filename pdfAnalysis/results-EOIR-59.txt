@@ -1,0 +1,52 @@
+Cantidad de fields: 50
+
+3 Other Names By Which You Have Been Known Since Birth (PDFTextField) — Allow Rich Text: NO
+6 Date of Birth mmddyyyy (PDFTextField) — Allow Rich Text: NO
+7 Country of Nationality or Citizenship (PDFTextField) — Allow Rich Text: NO
+8 Place of Birth (PDFTextField) — Allow Rich Text: NO
+1 Date of Birth mmddyyyy (PDFTextField) — Allow Rich Text: NO
+2 Place of Birth (PDFTextField) — Allow Rich Text: NO
+1 Signature (PDFTextField) — Allow Rich Text: NO
+2 Date (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Apartment or Unit Number if any (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Street Number and Name if applicable (PDFTextField) — Allow Rich Text: NO
+5 Previous Address City and State or Province (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Country (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Zip Code if any (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Telephone Number Area Code (PDFTextField) — Allow Rich Text: NO
+5 Previous Address Telephone Number (PDFTextField) — Allow Rich Text: NO
+9 check box Release all of my records (PDFCheckBox) — Allow Rich Text: NO
+9 check box Only release the following records (PDFCheckBox) — Allow Rich Text: NO
+9 Text box to describe particular records to be released (PDFTextField) — Allow Rich Text: NO
+1 Alien Registration Numbers A numbers if any (PDFTextField) — Allow Rich Text: NO
+2 Current Legal Name Last Name, First Name, Middle Name (PDFTextField) — Allow Rich Text: NO
+4 Current Address Street Number and Name (PDFTextField) — Allow Rich Text: NO
+4 Current Address Apartment or Unit Number If Any (PDFTextField) — Allow Rich Text: NO
+4 Current Address City and State or Province (PDFTextField) — Allow Rich Text: NO
+4 Current Address Country (PDFTextField) — Allow Rich Text: NO
+4 Current Address Zip Code if any (PDFTextField) — Allow Rich Text: NO
+4 Current Address Telephone Number Area Code (PDFTextField) — Allow Rich Text: NO
+4 Current Address Telephone Number (PDFTextField) — Allow Rich Text: NO
+1 Recipient Full Name Last Name, Middle Name, First Name (PDFTextField) — Allow Rich Text: NO
+2 Recipient Organization if applicable (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address In Care of Name if any (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Street Number and Name (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Apartment or Unit Number if any (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address City and State or Province (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Country (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Zip Code if any (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Telephone Number Area Code (PDFTextField) — Allow Rich Text: NO
+3 Recipient Mailing Address Telephone Number (PDFTextField) — Allow Rich Text: NO
+4  Recipient Email Address (PDFTextField) — Allow Rich Text: NO
+5 Recipient Relationship to Subject of Record check box Attorney or legal representative (PDFCheckBox) — Allow Rich Text: NO
+5 Recipient Relationship to Subject of Record check box Parent or guardian (PDFCheckBox) — Allow Rich Text: NO
+5 Recipient Relationship to Subject of Record check box Other please specify (PDFCheckBox) — Allow Rich Text: NO
+5 Recipient Relationship to Subject of Record check box other specification text box (PDFTextField) — Allow Rich Text: NO
+6 Recipient EOIRID Number if any (PDFTextField) — Allow Rich Text: NO
+3 Current Address Street Number and Name (PDFTextField) — Allow Rich Text: NO
+3 Current Address Apartment or Unit Number if any (PDFTextField) — Allow Rich Text: NO
+3 Current Address City and State or Province (PDFTextField) — Allow Rich Text: NO
+3 Current Address Country (PDFTextField) — Allow Rich Text: NO
+3 Current Address Zip Code if any (PDFTextField) — Allow Rich Text: NO
+4 Relation to Subject of Record (PDFTextField) — Allow Rich Text: NO
+4 Relation to Subject of Record check box By checking this box I understand that 28 CFR  1641 requires that I attach proof of my relationship to the subject of the record if I am (PDFCheckBox) — Allow Rich Text: NO
